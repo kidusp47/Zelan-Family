@@ -1,0 +1,101 @@
+:root {
+    --primary-color: #000000;
+    --secondary-color: #ffffff;
+    --accent-color: #3b82f6;
+    --active-color: #3b82f6;
+    --inactive-color: #ffffff;
+    --text-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+.pill-nav {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+.pill-container {
+    background-color: var(--primary-color);
+    border-radius: 50px;
+    padding: 10px 20px;
+    box-shadow: 0 10px 25px var(--shadow-color);
+    width: 90%;
+}
+
+.pill-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.pill-nav li {
+    position: relative;
+    padding: 8px 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.pill-nav li.active {
+    background-color: var(--active-color);
+}
+
+.pill-nav a {
+    color: var(--inactive-color);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.pill-nav li.active a {
+    color: var(--text-color);
+}
+
+.pill-nav i {
+    font-size: 1.2rem;
+}
+
+.pill-nav span {
+    font-size: 0.7rem;
+    margin-top: 3px;
+    display: none; /* Hide text labels by default */
+}
+@media (max-width: 768px) {
+    .pill-container {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .pill-container {
+        width: 90%;
+        padding: 8px 15px;
+    }
+    
+    .pill-nav li {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .pill-nav i {
+        font-size: 1rem;
+    }
+}
+
+

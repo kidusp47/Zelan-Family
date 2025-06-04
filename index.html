@@ -1,149 +1,739 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Zelan Family</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zelan Family</title>
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/responsive.css">
+    <link rel="stylesheet" href="/btn.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
+
+  
+
 <body>
-  <nav id="main-nav">
-    <ul>
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#about">About Us</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#categories">Categories</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#testimonials">Testimonials</a></li>
-    </ul>
-  </nav>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="#hero">ZELAN FAMILY</a>
+        </div>
+        <div class="nav-links">
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#work-categories">Work</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
 
-  <!-- Hero Section with full-screen background video -->
-  <section id="hero">
-    <video id="hero-video" autoplay muted loop playsinline>
-      <source src="/assets/videos/video1.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <div class="hero-content">
-      <h1>Zelan Family</h1>
-      <div class="video-controls">
-        <button id="prev-video">‹</button>
-        <button id="next-video">›</button>
-      </div>
-      <div class="scroll-indicator"></div>
+    <!-- Mobile Navigation (Bottom) -->
+    <nav class="pill-nav">
+        <div class="pill-container">
+            <ul>
+                <li class="active">
+                    <a href="#home">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#about">
+                        <i class="fas fa-file-alt"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#portfolio">
+                        <i class="fa-solid fa-z"></i>
+                        <span>Portfolio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#work">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Work</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact">
+                        <i class="fas fa-user"></i>
+                        <span>Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to the Zelan Family</h1>
+                    <p>Creative Excellence</p>
+        </div>
+        <div class="video-container">
+            <video id="hero-video" autoplay loop muted playsinline>
+                <source src="assets/videos/hero-video-1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="video-controls">
+            <button id="prev-video" class="video-nav-btn"><span>&lt;</span></button>
+            <button id="next-video" class="video-nav-btn"><span>&gt;</span></button>
+        </div>
+        <div class="scroll-indicator">
+            <div class="arrow">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about">
+        
+        <!--  -->
+        <section class="main-section">
+            <div class="left-content">
+              <h1>About us</h1>
+        
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, animi? Fugiat corrupti quos quod excepturi possimus hic, maxime ipsam porro similique omnis sequi eveniet quo quis, repudiandae dolorum officia itaque.</p>
+              <button class="contact-btn">Contact Now</button>
+              <div class="business-counter-section">
+  <div class="business-counter-container">
+    <!-- Heading Section -->
+    <div class="business-counter-heading">
+      <h2>We Will Help You To <span class="business-counter-italic">Grow Your Business</span></h2>
+      <p class="business-counter-subtitle">We're here to help you to finding a best way</p>
     </div>
-  </section>
-
-  <!-- About Us Section with video cards -->
-  <section id="about">
-    <h2>About Us</h2>
-    <div class="video-cards">
-      <div class="video-card">
-        <video src="/assets/videos/video1.mp4" muted loop playsinline poster="/assets/images/placeholder.jpg"></video>
+    
+    <!-- Counter Stats Grid -->
+    <div class="business-counter-grid">
+      <!-- Years of Experience -->
+      <div class="business-counter-item">
+        <div class="business-counter-number" data-count="12">0</div>
+        <div class="business-counter-plus">+</div>
+        <div class="business-counter-label">Years of Experience</div>
       </div>
-      <div class="video-card">
-        <video src="/assets/videos/video2.mp4" muted loop playsinline poster="/assets/images/placeholder.jpg"></video>
+      
+     
+      
+      <!-- Happy Clients -->
+      <div class="business-counter-item">
+        <div class="business-counter-number" data-count="27">0</div>
+        <div class="business-counter-suffix">k</div>
+        <div class="business-counter-label">Happy Clients</div>
       </div>
-      <div class="video-card">
-        <video src="/assets/videos/video3.mp4" muted loop playsinline poster="/assets/images/placeholder.jpg"></video>
-      </div>
-      <div class="video-card">
-        <video src="/assets/videos/video4.mp4" muted loop playsinline poster="/assets/images/placeholder.jpg"></video>
+      
+      <!-- Perfect Products -->
+      <div class="business-counter-item">
+        <div class="business-counter-number" data-count="15">0</div>
+        <div class="business-counter-label">Perfect Products</div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
+            </div>
+          
+            <div class="right-content">
+              <div class="video-carousel">
+                <div class="video-card">
+                    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@zelan_family/video/7505078337119735095" 
+                        data-video-id="7505078337119735095" 
+                        style="max-width: 300px; min-width: 300px;">
+                        <section>Loading TikTok...</section>
+                        </blockquote>
+                </div>
+                <div class="video-card">
+                    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@zelan_family/video/7418979573104250117" 
+                        data-video-id="7418979573104250117" 
+                        style="max-width: 300px; min-width: 300px;">
+                        <section>Loading TikTok...</section>
+                    </blockquote>
+                </div>
+                <div class="video-card">
+                    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@zelan_family/video/7505078337119735095" 
+                        data-video-id="7505078337119735095" 
+                        style="max-width: 300px; min-width: 300px;">
+                    <section>Loading TikTok...</section>
+                  </blockquote>
+                </div>
+                <script async src="https://www.tiktok.com/embed.js"></script>
 
-  <!-- Portfolio Section with image grid -->
-  <section id="portfolio">
-    <h2>Portfolio</h2>
+              </div>
+            </div>
+          </section>
+          
+          <div class="institutes-section">
+            <p>Our Instructors are trusted by</p>
+            <div class="institutes-scroll">
+                <div class="logo-track">
+                    <img src="/assets/logo/logo-3.png" alt="Logo1">
+                    <img src="/assets/logo/logo-4.png" alt="Logo1">
+                    <img src="/assets/logo/logo-3.png" alt="Logo1">
+                    <img src="/assets/logo/logo-4.png" alt="Logo1">
+                    <img src="/assets/logo/logo-3.png" alt="Logo1">
+                    <img src="/assets/logo/logo-4.png" alt="Logo1">
+                    <img src="/assets/logo/logo-3.png" alt="Logo1">
+                    <img src="/assets/logo/logo-4.png" alt="Logo1">
+                    <img src="/assets/logo/logo-3.png" alt="Logo1">
+                    <img src="/assets/logo/logo-4.png" alt="Logo1">
+                    <img src="/assets/logo/logo-3.png" alt="Logo1">
+                    <img src="/assets/logo/logo-4.png" alt="Logo1">
+                </div>    
+              
+            </div>
+          </div>
+          
+        <!--  -->
+        
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section">
+  <div class="portfolio-container">
+    <h2 class="portfolio-heading">Portfolio</h2>
+    
+    <!-- Filter Buttons -->
+    <div class="portfolio-filter">
+      <button class="portfolio-filter-btn active" data-filter="all">All</button>
+      <button class="portfolio-filter-btn" data-filter="website">Photo Production</button>
+      <button class="portfolio-filter-btn" data-filter="mobile">Video Production</button>
+      <button class="portfolio-filter-btn" data-filter="desktop">Motion Design</button>
+      <button class="portfolio-filter-btn" data-filter="branding">3D Design</button>
+    </div>
+    
+    <!-- Portfolio Grid -->
     <div class="portfolio-grid">
-      <img src="/assets/images/portfolio1.jpg" alt="Portfolio 1">
-      <img src="/assets/images/portfolio2.jpg" alt="Portfolio 2">
-      <img src="/assets/images/portfolio3.jpg" alt="Portfolio 3">
-      <img src="/assets/images/portfolio4.jpg" alt="Portfolio 4">
-      <img src="/assets/images/portfolio5.jpg" alt="Portfolio 5">
-      <img src="/assets/images/portfolio6.jpg" alt="Portfolio 6">
+      <!-- Project 1 -->
+      <div class="portfolio-item" data-category="website">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <img src="/assets/images/demo-img-1.jpg" alt="Zadva Project">
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Categories</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project 2 -->
+      <div class="portfolio-item" data-category="mobile">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <img src="/assets/images/demo-img-2.jpg" alt="Black Portfolio">
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Categories</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project 3 -->
+      <div class="portfolio-item" data-category="desktop">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <img src="/assets/images/demo-img-3.jpg" alt="Sounder Project">
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Categories</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project 4 -->
+      <div class="portfolio-item" data-category="branding">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <img src="/assets/images/demo-img-4.jpg" alt="Energized Project">
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Categories</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project 5 -->
+      <div class="portfolio-item" data-category="website">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <img src="/assets/images/demo-img-3.jpg" alt="Black Portfolio">
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Categories</p>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-item" data-category="website">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <img src="/assets/images/demo-img-2.jpg" alt="Black Portfolio">
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Categories</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project 6 -->
+      <div class="portfolio-item" data-category="mobile">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <img src="/assets/images/demo-img-1.jpg" alt="Zadva Project">
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Categories</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
+    
+      
 
-  <!-- Work Categories Section with sliding panels -->
-  <section id="categories">
-    <h2>Work Categories</h2>
-    <div class="categories">
-      <div class="category-block" data-target="ad-panel">Ad</div>
-      <div class="category-block" data-target="video-panel">Video</div>
-      <div class="category-block" data-target="three-d-panel">3D</div>
-      <div class="category-block" data-target="photo-panel">Photo</div>
-    </div>
-    <!-- Hidden panels for each category -->
-    <div id="ad-panel" class="category-panel">
-      <button class="close-panel">×</button>
-      <h3>Ad Works</h3>
-      <p>Sample works for Ad category go here...</p>
-    </div>
-    <div id="video-panel" class="category-panel">
-      <button class="close-panel">×</button>
-      <h3>Video Works</h3>
-      <p>Sample works for Video category go here...</p>
-    </div>
-    <div id="three-d-panel" class="category-panel">
-      <button class="close-panel">×</button>
-      <h3>3D Works</h3>
-      <p>Sample works for 3D category go here...</p>
-    </div>
-    <div id="photo-panel" class="category-panel">
-      <button class="close-panel">×</button>
-      <h3>Photo Works</h3>
-      <p>Sample works for Photo category go here...</p>
-    </div>
-  </section>
+    <!-- Services Offered Section -->
+    <section class="hero-section">
+        <div class="container con-1">
+          <div class="services-content">
+            <div class="services-left">
+              <h3 class="services-subtitle">Customized to meet bold challenges</h3>
+            </div>
+            <div class="services-right">
+              <h2 class="services-title">Our comprehensive suite of services are crafted to meet the needs of our clients.</h2>
+              <a href="#" class="cta-button">
+                <span class="cta-icon">→</span>
+                Schedule a call
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h1>Meet Our Team</h1>
+            </div>
+                       
+            <div class="video-cards">
+                <div class="video-card" data-video="assets/videos/about-video-1.mp4">
+                    <div class="video-thumbnail">
+                        <video loop muted playsinline>
+                            <source src="assets/videos/mubarek-video-1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="card-content">
+                        <h3>mubarek</h3>
+                        <p>Creative Director</p>
+                    </div>
+                </div>
+                <div class="video-card" data-video="assets/videos/about-video-2.mp4">
+                    <div class="video-thumbnail">
+                        <video loop muted playsinline>
+                            <source src="assets/videos/hermela-video-1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="card-content">
+                        <h3>Hermela Alemayehu</h3>
+                        <p>General manager </p>
+                    </div>
+                </div>
+                <div class="video-card" data-video="assets/videos/about-video-3.mp4">
+                    <div class="video-thumbnail">
+                        <video loop muted playsinline>
+                            <source src="assets/videos/Sarem-video-1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="card-content">
+                        <h3>Sarem</h3>
+                        <p>Cameraman</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="container">
+          <div class="hero-content1">
+            <div class="hero-text">
+              <h1 class="hero-title">What we Offer</h1>
+              <div class="hero-subtitle">
+                <h2>More than just consulting</h2>
+                <p>Our comprehensive services are made to meet our client needs.</p>
+                <a href="#" class="cta-button">
+                  <span class="cta-icon">→</span>
+                  Schedule a call
+                </a>
+              </div>
+            </div>
+            <div class="hero-images">
+              <div class="image-grid">
+                <div class="image-item image-1">
+                  <img src="/assets/images/demo-img-1.jpg" alt="Consultant">
+                </div>
+                <div class="image-item image-2">
+                  <img src="assets/images/demo-img-2.jpg" alt="Consultant">
+                </div>
+                <div class="image-item image-3">
+                  <img src="/assets/images/demo-img-3.jpg" alt="Consultant">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br><br><br>
 
-  <!-- Services Offered Section with animated cards -->
-  <section id="services">
-    <h2>Services Offered</h2>
-    <div class="services-cards">
-      <div class="service-card animate">
-        <h3>Service 1</h3>
-        <p>Description for service 1.</p>
-      </div>
-      <div class="service-card animate">
-        <h3>Service 2</h3>
-        <p>Description for service 2.</p>
-      </div>
-      <div class="service-card animate">
-        <h3>Service 3</h3>
-        <p>Description for service 3.</p>
-      </div>
-      <div class="service-card animate">
-        <h3>Service 4</h3>
-        <p>Description for service 4.</p>
-      </div>
-    </div>
-  </section>
+        
 
-  <!-- Testimonials Section with rotating quotes -->
-  <section id="testimonials">
-    <h2>Testimonials</h2>
-    <div class="testimonials">
-      <div class="testimonial active">
-        <p>"This is an amazing family website!"</p>
-        <p class="author">- John Doe</p>
-      </div>
-      <div class="testimonial">
-        <p>"We love the smooth animations and layout."</p>
-        <p class="author">- Jane Smith</p>
-      </div>
-      <div class="testimonial">
-        <p>"High quality portfolio and services."</p>
-        <p class="author">- Alex Lee</p>
-      </div>
-    </div>
-  </section>
+        <div class="container">
+            <div class="values-header">
+              <h3 class="values-title">Our values <span class="values-icon">→</span></h3>
+            </div>
+            <div class="values-grid">
+              <div class="value-item">
+                <div class="value-number">001</div>
+                <h4 class="value-title">Integrity</h4>
+                <p class="value-description">We maintain the highest ethical standards.</p>
+              </div>
+              <div class="value-item">
+                <div class="value-number">002</div>
+                <h4 class="value-title">Client-Centric</h4>
+                <p class="value-description">We tailor our solutions to meet the unique needs.</p>
+              </div>
+              <div class="value-item">
+                <div class="value-number">003</div>
+                <h4 class="value-title">Collaboration</h4>
+                <p class="value-description">We believe in the power of teamwork with clients.</p>
+              </div>
+              <div class="value-item">
+                <div class="value-number">004</div>
+                <h4 class="value-title">Excellence</h4>
+                <p class="value-description">Dedicated to delivering high-quality outcomes.</p>
+              </div>
+            </div>
+          </div>
+      </section>
+      
+      <!-- Services Section -->
+      
+      
+      <!-- Values Section -->
+      
+      
+      <!-- Testimonials Section -->
+      
+    <section class="strategy-section">
+        <div class="strategy-content">
+            <h2 class="strategy-title">Video Production</h2>
+            <p class="strategy-description">Our strategy services are designed to help businesses navigate todays fast-paced market environment.</p>
+            
+            <button class="details-btn">
+                Details <span class="icon">↓</span>
+            </button>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-number">001</span>
+                        <div class="accordion-title">Add a unique feature that comes with this service.</div>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nunc vulputate libero et.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-number">002</span>
+                        <div class="accordion-title">Add a unique feature that comes with this service.</div>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nunc vulputate libero et.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-number">003</span>
+                        <div class="accordion-title">Add a unique feature that comes with this service.</div>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nunc vulputate libero et.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="strategy-image">
+            <img src="/assets/images/demo-img-2.jpg" alt="Professional consultant">
+        </div>
+    </section>
+    <section class="strategy-section">
+        <div class="strategy-image">
+            <img src="/assets/images/demo-img-2.jpg" alt="Professional consultant">
+        </div>
+        <div class="strategy-content">
+            <h2 class="strategy-title">Photo Production</h2>
+            <p class="strategy-description">Our strategy services are designed to help businesses navigate todays fast-paced market environment.</p>
+            
+            <button class="details-btn">
+                Details <span class="icon">↓</span>
+            </button>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-number">001</span>
+                        <div class="accordion-title">Add a unique feature that comes with this service.</div>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nunc vulputate libero et.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-number">002</span>
+                        <div class="accordion-title">Add a unique feature that comes with this service.</div>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nunc vulputate libero et.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-number">003</span>
+                        <div class="accordion-title">Add a unique feature that comes with this service.</div>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nunc vulputate libero et.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </section>
+    <section class="strategy-section">
+        <div class="strategy-content">
+            <h2 class="strategy-title">3D Design</h2>
+            <p class="strategy-description">Our strategy services are designed to help businesses navigate todays fast-paced market environment.</p>
+            
+            <button class="details-btn">
+                Details <span class="icon">↓</span>
+            </button>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-number">001</span>
+                        <div class="accordion-title">Add a unique feature that comes with this service.</div>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nunc vulputate libero et.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-number">002</span>
+                        <div class="accordion-title">Add a unique feature that comes with this service.</div>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nunc vulputate libero et.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-number">003</span>
+                        <div class="accordion-title">Add a unique feature that comes with this service.</div>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nunc vulputate libero et.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="strategy-image">
+            <img src="/assets/images/demo-img-2.jpg" alt="Professional consultant">
+        </div>
+    </section>
+    <section class="strategy-section">
+        <div class="strategy-image">
+            <img src="/assets/images/demo-img-2.jpg" alt="Professional consultant">
+        </div>
+        <div class="strategy-content">
+            <h2 class="strategy-title">Motion Design</h2>
+            <p class="strategy-description">Our strategy services are designed to help businesses navigate todays fast-paced market environment.</p>
+            
+            <button class="details-btn">
+                Details <span class="icon">↓</span>
+            </button>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-number">001</span>
+                        <div class="accordion-title">Add a unique feature that comes with this service.</div>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nunc vulputate libero et.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-number">002</span>
+                        <div class="accordion-title">Add a unique feature that comes with this service.</div>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nunc vulputate libero et.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-number">003</span>
+                        <div class="accordion-title">Add a unique feature that comes with this service.</div>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit nunc vulputate libero et.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </section>
+    <section class="testimonials-section">
+        <div class="container">
+          <div class="testimonials-content">
+            <div class="quote-icon">❞</div>
+            <div class="testimonials-grid">
+              <div class="testimonial-item">
+                <blockquote class="testimonial-quote">
+                  Their client-centric approach truly sets them apart.
+                </blockquote>
+                <div class="testimonial-author">
+                  <div class="author-image">
+                    <img src="https://placehold.co/60x60/111/fff?text=RW" alt="Ronald Wittrey">
+                  </div>
+                  <div class="author-info">
+                    <div class="author-name">Ronald Wittrey</div>
+                    <div class="author-position">Founder, Burberry</div>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-item">
+                <blockquote class="testimonial-quote">
+                  Their approach has significantly boosted our efficiency.
+                </blockquote>
+                <div class="testimonial-author">
+                  <div class="author-image">
+                    <img src="https://placehold.co/60x60/111/fff?text=JC" alt="Joseph Colsen">
+                  </div>
+                  <div class="author-info">
+                    <div class="author-name">Joseph Colsen</div>
+                    <div class="author-position">Founder, Dame Events</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Navigation Controls -->
+      
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-header">
+            <h2>Contact Us</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <p>Get in touch with us to discuss your project needs.</p>
+                <div class="contact-details">
+                    <p>Email: info@zelanfamily.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 Zelan Family. All rights reserved.</p>
-  </footer>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>ZELAN FAMILY</h3>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#work-categories">Work</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-behance"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Zelan Family. All Rights Reserved.</p>
+        </div>
+    </footer>
 
-  <script src="/js/main.js"></script>
+    <script src="/main.js"></script>
 </body>
 </html>
