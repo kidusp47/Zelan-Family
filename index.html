@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zelan Family</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav id="main-nav">
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section with full-screen background video -->
+  <section id="hero">
+    <video id="hero-video" autoplay muted loop playsinline>
+      <source src="/assets/videos/video1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-content">
+      <h1>Zelan Family</h1>
+      <div class="video-controls">
+        <button id="prev-video">‹</button>
+        <button id="next-video">›</button>
+      </div>
+      <div class="scroll-indicator"></div>
+    </div>
+  </section>
+
+  <!-- About Us Section with video cards -->
+  <section id="about">
+    <h2>About Us</h2>
+    <div class="video-cards">
+      <div class="video-card">
+        <video src="/assets/videos/video1.mp4" muted loop playsinline poster="/assets/images/placeholder.jpg"></video>
+      </div>
+      <div class="video-card">
+        <video src="/assets/videos/video2.mp4" muted loop playsinline poster="/assets/images/placeholder.jpg"></video>
+      </div>
+      <div class="video-card">
+        <video src="/assets/videos/video3.mp4" muted loop playsinline poster="/assets/images/placeholder.jpg"></video>
+      </div>
+      <div class="video-card">
+        <video src="/assets/videos/video4.mp4" muted loop playsinline poster="/assets/images/placeholder.jpg"></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section with image grid -->
+  <section id="portfolio">
+    <h2>Portfolio</h2>
+    <div class="portfolio-grid">
+      <img src="/assets/images/portfolio1.jpg" alt="Portfolio 1">
+      <img src="/assets/images/portfolio2.jpg" alt="Portfolio 2">
+      <img src="/assets/images/portfolio3.jpg" alt="Portfolio 3">
+      <img src="/assets/images/portfolio4.jpg" alt="Portfolio 4">
+      <img src="/assets/images/portfolio5.jpg" alt="Portfolio 5">
+      <img src="/assets/images/portfolio6.jpg" alt="Portfolio 6">
+    </div>
+  </section>
+
+  <!-- Work Categories Section with sliding panels -->
+  <section id="categories">
+    <h2>Work Categories</h2>
+    <div class="categories">
+      <div class="category-block" data-target="ad-panel">Ad</div>
+      <div class="category-block" data-target="video-panel">Video</div>
+      <div class="category-block" data-target="three-d-panel">3D</div>
+      <div class="category-block" data-target="photo-panel">Photo</div>
+    </div>
+    <!-- Hidden panels for each category -->
+    <div id="ad-panel" class="category-panel">
+      <button class="close-panel">×</button>
+      <h3>Ad Works</h3>
+      <p>Sample works for Ad category go here...</p>
+    </div>
+    <div id="video-panel" class="category-panel">
+      <button class="close-panel">×</button>
+      <h3>Video Works</h3>
+      <p>Sample works for Video category go here...</p>
+    </div>
+    <div id="three-d-panel" class="category-panel">
+      <button class="close-panel">×</button>
+      <h3>3D Works</h3>
+      <p>Sample works for 3D category go here...</p>
+    </div>
+    <div id="photo-panel" class="category-panel">
+      <button class="close-panel">×</button>
+      <h3>Photo Works</h3>
+      <p>Sample works for Photo category go here...</p>
+    </div>
+  </section>
+
+  <!-- Services Offered Section with animated cards -->
+  <section id="services">
+    <h2>Services Offered</h2>
+    <div class="services-cards">
+      <div class="service-card animate">
+        <h3>Service 1</h3>
+        <p>Description for service 1.</p>
+      </div>
+      <div class="service-card animate">
+        <h3>Service 2</h3>
+        <p>Description for service 2.</p>
+      </div>
+      <div class="service-card animate">
+        <h3>Service 3</h3>
+        <p>Description for service 3.</p>
+      </div>
+      <div class="service-card animate">
+        <h3>Service 4</h3>
+        <p>Description for service 4.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section with rotating quotes -->
+  <section id="testimonials">
+    <h2>Testimonials</h2>
+    <div class="testimonials">
+      <div class="testimonial active">
+        <p>"This is an amazing family website!"</p>
+        <p class="author">- John Doe</p>
+      </div>
+      <div class="testimonial">
+        <p>"We love the smooth animations and layout."</p>
+        <p class="author">- Jane Smith</p>
+      </div>
+      <div class="testimonial">
+        <p>"High quality portfolio and services."</p>
+        <p class="author">- Alex Lee</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Zelan Family. All rights reserved.</p>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
