@@ -1,4 +1,4 @@
-// Main JavaScript file for Zelan Family website
+// Enhanced JavaScript for Zelan Family website with smooth animations
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -10,12 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevVideoBtn = document.getElementById('prev-video');
     const nextVideoBtn = document.getElementById('next-video');
     const videoCards = document.querySelectorAll('.video-card');
-    const categories = document.querySelectorAll('.category');
-    const categoryPanels = document.querySelectorAll('.category-panel');
-    const closePanelBtns = document.querySelectorAll('.close-panel');
-    const categoryDetails = document.querySelector('.category-details');
     
-    // Hero Video Array (placeholders - to be replaced with actual videos)
+    // Hero Video Array
     const heroVideos = [
         'assets/videos/hero-video-1.mp4',
         'assets/videos/hero-video-2.mp4',
@@ -26,172 +22,423 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let currentVideoIndex = 0;
     
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                
+                // Add staggered animation for child elements
+                const children = entry.target.querySelectorAll('.animate-child');
+                children.forEach((child, index) => {
+                    setTimeout(() => {
+                        child.classList.add('animated');
+                    }, index * 100);
+                });
+            }
+        });
+    }, observerOptions);
+    
     // Navigation Functions
     function toggleNav() {
         navLinks.classList.toggle('nav-active');
         burger.classList.toggle('toggle');
-    }
-    
-    // Scroll Functions
-    function handleScroll() {
-        if (window.scrollY > 100) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
         
-        // Add animation to elements when they come into view
-        animateOnScroll();
+        // Add body scroll lock when menu is open
+        if (navLinks.classList.contains('nav-active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
     }
     
-    // Smooth scroll to section when clicking nav links
+    // Enhanced scroll handling with throttling
+    let ticking = false;
+    function handleScroll() {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const scrollY = window.scrollY;
+                
+                // Navbar background change
+                if (scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                // Parallax effect for hero video
+                if (heroVideo && scrollY <= window.innerHeight) {
+                    const yValue = scrollY * 0.5;
+                    heroVideo.style.transform = `translateY(${yValue}px)`;
+                }
+                
+                // Update active navigation item based on scroll position
+                updateActiveNavItem();
+                
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+    
+    // Update active navigation item
+    function updateActiveNavItem() {
+        const sections = document.querySelectorAll('section[id]');
+        const navItems = document.querySelectorAll('.pill-nav li');
+        
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 200;
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            const link = item.querySelector('a');
+            if (link && link.getAttribute('href') === `#${current}`) {
+                item.classList.add('active');
+            }
+        });
+    }
+    
+    // Smooth scroll with easing
     function smoothScroll(e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
         
-        window.scrollTo({
-            top: targetSection.offsetTop - navbar.offsetHeight,
-            behavior: 'smooth'
-        });
+        if (targetId === '#') return;
+        
+        const targetSection = document.querySelector(targetId);
+        if (!targetSection) return;
+        
+        const targetPosition = targetSection.offsetTop - navbar.offsetHeight;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        const duration = 1000;
+        let start = null;
+        
+        function animation(currentTime) {
+            if (start === null) start = currentTime;
+            const timeElapsed = currentTime - start;
+            const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+        
+        function easeInOutQuad(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        }
+        
+        requestAnimationFrame(animation);
         
         // Close mobile nav if open
-        if (navLinks.classList.contains('nav-active')) {
+        if (navLinks && navLinks.classList.contains('nav-active')) {
             toggleNav();
         }
     }
     
-    // Hero Video Functions
+    // Enhanced video switching with smooth transitions
     function switchVideo(direction) {
+        if (!heroVideo) return;
+        
+        const videoContainer = heroVideo.parentElement;
+        videoContainer.style.transition = 'opacity 0.5s ease';
+        videoContainer.style.opacity = '0.7';
+        
         if (direction === 'next') {
             currentVideoIndex = (currentVideoIndex + 1) % heroVideos.length;
         } else {
             currentVideoIndex = (currentVideoIndex - 1 + heroVideos.length) % heroVideos.length;
         }
         
-        // Fade out current video
-        heroVideo.style.opacity = 0;
-        
-        // Change source and fade in after a short delay
         setTimeout(() => {
             heroVideo.src = heroVideos[currentVideoIndex];
             heroVideo.load();
-            heroVideo.play();
-            heroVideo.style.opacity = 1;
-        }, 500);
+            heroVideo.play().catch(e => console.log('Video play failed:', e));
+            videoContainer.style.opacity = '1';
+        }, 250);
     }
     
-    // Video Card Functions
+    // Enhanced video card interactions
     function handleVideoCardHover() {
         const video = this.querySelector('video');
-        video.play();
+        if (video) {
+            video.play().catch(e => console.log('Video play failed:', e));
+            this.style.transform = 'scale(1.05) translateY(-10px)';
+        }
     }
     
     function handleVideoCardLeave() {
         const video = this.querySelector('video');
-        video.pause();
-        video.currentTime = 0;
+        if (video) {
+            video.pause();
+            video.currentTime = 0;
+            this.style.transform = '';
+        }
     }
     
-    // Category Panel Functions
-    function openCategoryPanel() {
-        const categoryId = this.id;
-        const panelId = categoryId.replace('category', 'panel');
-        const panel = document.getElementById(panelId);
+    // Form submission with animation
+    function handleFormSubmit(e) {
+        e.preventDefault();
         
-        categoryDetails.style.display = 'block';
+        const submitBtn = e.target.querySelector('.submit-btn');
+        const originalText = submitBtn.textContent;
         
-        // Slide in the panel
+        // Animate button
+        submitBtn.textContent = 'Sending...';
+        submitBtn.style.transform = 'scale(0.95)';
+        
         setTimeout(() => {
-            panel.style.left = '0';
-        }, 100);
+            submitBtn.textContent = 'Message Sent!';
+            submitBtn.style.background = '#4CAF50';
+            submitBtn.style.transform = 'scale(1)';
+            
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.style.background = '';
+                e.target.reset();
+            }, 2000);
+        }, 1000);
     }
     
-    function closeCategoryPanel() {
-        const panel = this.closest('.category-panel');
-        
-        // Slide out the panel
-        panel.style.left = '-100%';
-        
-        // Hide the details container after animation completes
-        setTimeout(() => {
-            categoryDetails.style.display = 'none';
-        }, 500);
-    }
-    
-    // Animation Functions
-    function animateOnScroll() {
-        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    // Setup scroll animations
+    function setupScrollAnimations() {
+        const animatedElements = document.querySelectorAll(`
+            .section-header,
+            .hero-content,
+            .about-text,
+            .video-card,
+            .strategy-title,
+            .strategy-description,
+            .portfolio-heading,
+            .portfolio-filter-btn,
+            .portfolio-item,
+            .testimonial-item,
+            .contact-info,
+            .contact-form,
+            .service-card,
+            .accordion-item,
+            .hero-title,
+            .hero-subtitle,
+            .services-title,
+            .services-subtitle,
+            .image-item,
+            .left-content h1,
+            .left-content p,
+            .contact-btn
+        `);
         
         animatedElements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.3;
+            element.classList.add('animate-on-scroll');
+            observer.observe(element);
+        });
+    }
+    
+    // Enhanced accordion functionality
+    function setupAccordions() {
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            const content = item.querySelector('.accordion-content');
             
-            if (elementPosition < screenPosition) {
-                element.classList.add('animated');
+            if (header && content) {
+                header.addEventListener('click', function() {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all items with smooth animation
+                    accordionItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            const otherContent = otherItem.querySelector('.accordion-content');
+                            if (otherContent) {
+                                otherContent.style.maxHeight = '0';
+                                otherContent.style.opacity = '0';
+                            }
+                        }
+                    });
+                    
+                    // Toggle current item
+                    if (!isActive) {
+                        item.classList.add('active');
+                        content.style.display = 'block';
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        content.style.opacity = '1';
+                    } else {
+                        item.classList.remove('active');
+                        content.style.maxHeight = '0';
+                        content.style.opacity = '0';
+                        setTimeout(() => {
+                            content.style.display = 'none';
+                        }, 300);
+                    }
+                });
             }
         });
     }
     
-    // Parallax Effect for Hero Section
-    function parallaxEffect() {
-        const heroSection = document.querySelector('.hero');
-        const scrollPosition = window.pageYOffset;
+    // Details button functionality
+    function setupDetailsButtons() {
+        const detailsBtns = document.querySelectorAll('.details-btn');
         
-        if (scrollPosition <= heroSection.offsetHeight) {
-            const yValue = scrollPosition * 0.5;
-            heroVideo.style.transform = `translateY(${yValue}px)`;
+        detailsBtns.forEach(btn => {
+            const accordion = btn.parentElement.querySelector('.accordion');
+            
+            if (accordion) {
+                // Initially hide accordion
+                accordion.style.display = 'none';
+                
+                btn.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    
+                    if (this.classList.contains('active')) {
+                        accordion.style.display = 'block';
+                        accordion.style.opacity = '0';
+                        accordion.style.transform = 'translateY(-10px)';
+                        
+                        setTimeout(() => {
+                            accordion.style.opacity = '1';
+                            accordion.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        accordion.style.opacity = '0';
+                        accordion.style.transform = 'translateY(-10px)';
+                        
+                        setTimeout(() => {
+                            accordion.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            }
+        });
+    }
+    
+    // Mobile navigation functionality
+    function setupMobileNav() {
+        const navItems = document.querySelectorAll('.pill-nav li');
+        
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                navItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    }
+    
+    // Portfolio filter functionality
+    function setupPortfolioFilter() {
+        const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filterValue = this.getAttribute('data-filter');
+                
+                // Filter items with animation
+                portfolioItems.forEach((item, index) => {
+                    const itemCategory = item.getAttribute('data-category');
+                    
+                    if (filterValue === 'all' || filterValue === itemCategory) {
+                        item.style.display = 'block';
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, index * 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(-20px)';
+                        
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // Initialize with all items visible
+        if (filterButtons.length > 0) {
+            filterButtons[0].click();
         }
     }
     
-    // Add animate-on-scroll class to elements that should animate
-    function setupAnimations() {
-        // Section headers
-        document.querySelectorAll('.section-header').forEach(header => {
-            header.classList.add('animate-on-scroll');
+    // Enhanced hover effects
+    function setupHoverEffects() {
+        // Add hover effects to cards
+        const cards = document.querySelectorAll('.portfolio-card, .video-card, .service-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+            });
         });
         
-        // Service cards
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.classList.add('animate-on-scroll');
-        });
+        // Add hover effects to buttons
+        const buttons = document.querySelectorAll('button, .cta-button');
         
-        // About text
-        document.querySelector('.about-text').classList.add('animate-on-scroll');
-        
-        // Video cards
-        document.querySelectorAll('.video-card').forEach(card => {
-            card.classList.add('animate-on-scroll');
-        });
-        
-        // Categories
-        document.querySelectorAll('.category').forEach(category => {
-            category.classList.add('animate-on-scroll');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
         });
     }
     
-    // Form submission
-    function handleFormSubmit(e) {
-        e.preventDefault();
+    // Preload images for better performance
+    function preloadImages() {
+        const images = document.querySelectorAll('img[data-src]');
         
-        // In a real implementation, this would send the form data to a server
-        // For now, just show an alert
-        alert('Thank you for your message! This is a demo form and does not actually send data.');
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
         
-        // Reset the form
-        e.target.reset();
+        images.forEach(img => imageObserver.observe(img));
     }
     
-    // Initialize the website
+    // Initialize everything
     function init() {
         // Setup event listeners
-        burger.addEventListener('click', toggleNav);
-        window.addEventListener('scroll', handleScroll);
-        prevVideoBtn.addEventListener('click', () => switchVideo('prev'));
-        nextVideoBtn.addEventListener('click', () => switchVideo('next'));
+        if (burger) burger.addEventListener('click', toggleNav);
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        
+        if (prevVideoBtn) prevVideoBtn.addEventListener('click', () => switchVideo('prev'));
+        if (nextVideoBtn) nextVideoBtn.addEventListener('click', () => switchVideo('next'));
         
         // Smooth scroll for all navigation links
-        document.querySelectorAll('.nav-links a, .mobile-nav a, .footer-links a').forEach(link => {
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', smoothScroll);
         });
         
@@ -201,297 +448,98 @@ document.addEventListener('DOMContentLoaded', function() {
             card.addEventListener('mouseleave', handleVideoCardLeave);
         });
         
-        // Category panel interactions
-        categories.forEach(category => {
-            category.addEventListener('click', openCategoryPanel);
-        });
-        
-        closePanelBtns.forEach(btn => {
-            btn.addEventListener('click', closeCategoryPanel);
-        });
-        
         // Form submission
-        document.querySelector('.contact-form form').addEventListener('submit', handleFormSubmit);
+        const contactForm = document.querySelector('.contact-form form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', handleFormSubmit);
+        }
         
-        // Setup animations
-        setupAnimations();
+        // Setup all functionality
+        setupScrollAnimations();
+        setupAccordions();
+        setupDetailsButtons();
+        setupMobileNav();
+        setupPortfolioFilter();
+        setupHoverEffects();
+        preloadImages();
         
-        // Initial scroll check
+        // Initial calls
         handleScroll();
+        updateActiveNavItem();
         
-        // Add parallax effect on scroll
-        window.addEventListener('scroll', parallaxEffect);
+        // Add loading animation
+        document.body.classList.add('loaded');
     }
     
-    // Initialize the website
+    // Initialize when DOM is ready
     init();
-});
-document.addEventListener('DOMContentLoaded', function() {
-    // Toggle details
-    const detailsBtn = document.querySelector('.strategy-section .details-btn');
-    const accordion = document.querySelector('.strategy-section .accordion');
     
-    detailsBtn.addEventListener('click', function() {
-        this.classList.toggle('active');
-        accordion.style.display = accordion.style.display === 'none' ? 'block' : 'none';
+    // Add smooth page transitions
+    window.addEventListener('beforeunload', function() {
+        document.body.style.opacity = '0';
     });
     
-    // Toggle accordion items
-    const accordionItems = document.querySelectorAll('.strategy-section .accordion-item');
-    
-    accordionItems.forEach(item => {
-        const header = item.querySelector('.accordion-header');
-        
-        header.addEventListener('click', function() {
-            const currentItem = this.parentElement;
-            
-            // Close all items
-            accordionItems.forEach(item => {
-                if (item !== currentItem) {
-                    item.classList.remove('active');
-                }
-            });
-            
-            // Toggle current item
-            currentItem.classList.toggle('active');
-        });
+    // Performance optimization: Debounce resize events
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            // Recalculate positions after resize
+            updateActiveNavItem();
+        }, 250);
     });
 });
 
+// Additional utility functions for enhanced animations
+function createRippleEffect(event) {
+    const button = event.currentTarget;
+    const ripple = document.createElement('span');
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+    
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    ripple.classList.add('ripple');
+    
+    button.appendChild(ripple);
+    
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+}
+
+// Add ripple effect to buttons
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Menu Toggle
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    const buttons = document.querySelectorAll('button, .portfolio-filter-btn');
     
-    if (mobileMenuToggle && navMenu) {
-      mobileMenuToggle.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-        mobileMenuToggle.classList.toggle('active');
-      });
-    }
-    
-    // Navigation Controls
-    const prevButton = document.querySelector('.prev-button');
-    const nextButton = document.querySelector('.next-button');
-    
-    if (prevButton) {
-      prevButton.addEventListener('click', function() {
-        // Navigate to previous page/slide
-        console.log('Navigate to previous page');
-        // You can add actual navigation logic here
-      });
-    }
-    
-    if (nextButton) {
-      nextButton.addEventListener('click', function() {
-        // Navigate to next page/slide
-        console.log('Navigate to next page');
-        // You can add actual navigation logic here
-      });
-    }
-    
-    // Smooth Scrolling for Anchor Links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 100,
-            behavior: 'smooth'
-          });
-          
-          // Close mobile menu if open
-          if (navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
-          }
-        }
-      });
+    buttons.forEach(button => {
+        button.addEventListener('click', createRippleEffect);
     });
-    
-    // Add scroll event for header styling
-    const header = document.querySelector('.header');
-    
-    if (header) {
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-      });
-    }
-    
-    // Optional: Add animation for elements when they come into view
-    const animateOnScroll = function() {
-      const elements = document.querySelectorAll('.animate-on-scroll');
-      
-      elements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        
-        if (elementPosition < windowHeight - 100) {
-          element.classList.add('animated');
-        }
-      });
-    };
-    
-    // Add animate-on-scroll class to elements you want to animate
-    const addAnimationClasses = function() {
-      document.querySelectorAll('.hero-title, .hero-subtitle, .services-title, .value-item, .testimonial-item').forEach(element => {
-        element.classList.add('animate-on-scroll');
-      });
-    };
-    
-    addAnimationClasses();
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Initial check
-  });
-  document.addEventListener('DOMContentLoaded', function() {
-    // Get all navigation items
-    const navItems = document.querySelectorAll('.pill-nav li');
-    
-    // Add click event listener to each item
-    navItems.forEach(item => {
-        item.addEventListener('click', function() {
-            // Remove active class from all items
-            navItems.forEach(i => i.classList.remove('active'));
-            
-            // Add active class to clicked item
-            this.classList.add('active');
-        });
-    });
-    
-    // Function to toggle between color variants (for demo purposes)
-    let currentTheme = 'black'; // Default theme
-    
-    function toggleTheme() {
-        const pillNav = document.querySelector('.pill-nav');
-        
-        // Remove all theme classes
-        pillNav.classList.remove('black', 'blue', 'white');
-        
-        // Set next theme
-        if (currentTheme === 'black') {
-            currentTheme = 'blue';
-        } else if (currentTheme === 'blue') {
-            currentTheme = 'white';
-        } else {
-            currentTheme = 'black';
-        }
-        
-        // Apply new theme
-        pillNav.classList.add(currentTheme);
-    }
-    
-    // Add theme toggle functionality (optional)
-    document.querySelector('.content').addEventListener('click', toggleTheme);
-});
-document.addEventListener('DOMContentLoaded', function() {
-  // Get all portfolio filter buttons and items
-  const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
-  const portfolioItems = document.querySelectorAll('.portfolio-item');
-  
-  // Add click event listeners to filter buttons
-  filterButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      // Remove active class from all buttons
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      
-      // Add active class to clicked button
-      this.classList.add('active');
-      
-      // Get filter value
-      const filterValue = this.getAttribute('data-filter');
-      
-      // Filter portfolio items
-      portfolioItems.forEach(item => {
-        const itemCategory = item.getAttribute('data-category');
-        
-        // Show/hide items based on filter
-        if (filterValue === 'all' || filterValue === itemCategory) {
-          item.classList.remove('hidden');
-          // Add animation for smooth appearance
-          item.style.opacity = '0';
-          setTimeout(() => {
-            item.style.opacity = '1';
-          }, 50);
-        } else {
-          item.classList.add('hidden');
-        }
-      });
-    });
-  });
-  
-  // Initialize with all items visible
-  filterButtons[0].click();
 });
 
-// Business Stats Counter Animation
-document.addEventListener('DOMContentLoaded', function() {
-  // Function to check if element is in viewport
-  function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-  }
-  
-  // Function to animate counter
-  function animateCounter(element, target, duration) {
-    let start = 0;
-    const increment = target > 100 ? 1 : 0.1;
-    const stepTime = Math.abs(Math.floor(duration / (target / increment)));
-    
-    const timer = setInterval(function() {
-      start += increment;
-      
-      // Handle different formats (with decimals for small numbers)
-      if (target > 100) {
-        element.textContent = Math.floor(start);
-      } else {
-        element.textContent = Math.round(start * 10) / 10;
-      }
-      
-      if (start >= target) {
-        element.textContent = target;
-        clearInterval(timer);
-      }
-    }, stepTime);
-  }
-  
-  // Get all counter elements
-  const counters = document.querySelectorAll('.business-counter-number');
-  let hasAnimated = false;
-  
-  // Function to start animation if counters are in viewport
-  function checkCounters() {
-    if (hasAnimated) return;
-    
-    const counterSection = document.querySelector('.business-counter-section');
-    
-    if (isInViewport(counterSection)) {
-      hasAnimated = true;
-      
-      counters.forEach(counter => {
-        const target = parseFloat(counter.getAttribute('data-count'));
-        animateCounter(counter, target, 2000); // 2 seconds duration
-      });
-      
-      // Remove scroll listener once animation has started
-      window.removeEventListener('scroll', checkCounters);
+// CSS for ripple effect (add to styles)
+const rippleCSS = `
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
     }
-  }
-  
-  // Check on initial load and scroll
-  checkCounters();
-  window.addEventListener('scroll', checkCounters);
-});
+}
+`;
+
+// Add ripple CSS to document
+const style = document.createElement('style');
+style.textContent = rippleCSS;
+document.head.appendChild(style);

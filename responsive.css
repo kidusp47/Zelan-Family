@@ -1,40 +1,116 @@
-/* Responsive CSS */
+/* Enhanced Responsive CSS with Consistent Padding and Animations */
+
+/* CSS Custom Properties for Responsive Design */
+:root {
+    --section-padding-desktop: 6rem 2rem;
+    --section-padding-tablet: 4rem 1.5rem;
+    --section-padding-mobile: 3rem 1rem;
+    --container-max-width: 1200px;
+    --container-padding: 0 2rem;
+    --grid-gap-desktop: 2rem;
+    --grid-gap-tablet: 1.5rem;
+    --grid-gap-mobile: 1rem;
+    --border-radius: 12px;
+    --transition-speed: 0.3s;
+    --animation-delay: 0.1s;
+}
+
+/* Base responsive container */
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: var(--container-padding);
+    width: 100%;
+}
+
+/* Consistent section padding across all breakpoints */
+section {
+    padding: var(--section-padding-desktop);
+}
 
 /* Large Screens (1200px and up) */
 @media screen and (min-width: 1200px) {
     .container {
         max-width: 1140px;
     }
+    
+    .hero-content h1 {
+        font-size: 4.5rem;
+        animation: fadeInUp 1s ease-out 0.5s both;
+    }
+    
+    .video-cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--grid-gap-desktop);
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .image-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
 }
 
 /* Medium Screens (992px to 1199px) */
 @media screen and (max-width: 1199px) {
+    section {
+        padding: var(--section-padding-tablet);
+    }
+    
     .container {
         max-width: 960px;
+        padding: 0 1.5rem;
     }
     
     .hero-content h1 {
         font-size: 3.5rem;
+        animation: fadeInUp 1s ease-out 0.5s both;
     }
     
     .video-cards {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
+        gap: var(--grid-gap-tablet);
     }
     
-    .category-container {
-        grid-template-columns: repeat(2, 1fr);
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .strategy-section {
+        padding: var(--section-padding-tablet);
+        gap: 3rem;
+    }
+    
+    .hero-content1 {
+        gap: 3rem;
+    }
+    
+    .services-content {
+        gap: 3rem;
+    }
+    
+    .testimonials-grid {
+        gap: 3rem;
     }
 }
 
 /* Small Screens (768px to 991px) */
 @media screen and (max-width: 991px) {
+    section {
+        padding: var(--section-padding-tablet);
+    }
+    
     .container {
         max-width: 720px;
+        padding: 0 1.5rem;
     }
     
     .hero-content h1 {
         font-size: 3rem;
+        animation: fadeInUp 1s ease-out 0.5s both;
     }
     
     .hero-content p {
@@ -50,30 +126,81 @@
     }
     
     .burger {
-        display: none;
-    }
-
-    .mobile-nav {
         display: block;
     }
     
     .video-cards {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        gap: var(--grid-gap-tablet);
     }
     
-    .services-container {
+    .portfolio-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: var(--grid-gap-tablet);
+    }
+    
+    .strategy-section {
+        flex-direction: column;
+        gap: 2rem;
+        padding: var(--section-padding-tablet);
+    }
+    
+    .strategy-content {
+        padding-right: 0;
+        margin: 0;
+    }
+    
+    .hero-content1 {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+        margin-top: 2rem;
+    }
+    
+    .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    
+    .image-item img {
+        height: 300px;
+        width: 100%;
+    }
+    
+    .image-1, .image-2, .image-3 {
+        transform: translateY(0);
+    }
+    
+    .services-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .main-section {
+        flex-direction: column;
+        gap: 2rem;
+        padding: var(--section-padding-tablet);
+    }
+    
+    .left-content, .right-content {
+        width: 100%;
+        margin-right: 0;
     }
     
     .footer-content {
         flex-direction: column;
         align-items: center;
         text-align: center;
-    }
-    
-    .footer-logo, .footer-links, .footer-social {
-        margin-bottom: 1.5rem;
+        gap: 2rem;
     }
     
     .footer-links ul {
@@ -83,41 +210,46 @@
     .footer-social {
         justify-content: center;
     }
-    
-    .social-icon {
-        margin: 0 0.5rem;
-    }
 }
 
 /* Extra Small Screens (up to 767px) */
 @media screen and (max-width: 767px) {
+    section {
+        padding: var(--section-padding-mobile);
+    }
+    
+    .container {
+        max-width: 540px;
+        padding: 0 1rem;
+    }
+    
+    /* Enhanced touch targets for mobile */
     .nav-links a, 
-    .mobile-nav a,
+    .pill-nav a,
     .video-nav-btn,
-    .close-panel,
     .submit-btn,
-    .social-icon {
+    .social-icon,
+    .portfolio-filter-btn,
+    .contact-btn,
+    .cta-button {
         min-height: 44px;
         min-width: 44px;
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 12px;
     }
     
     .form-group input,
     .form-group textarea {
         padding: 12px;
-    }
-    .container {
-        max-width: 540px;
-    }
-    
-    section {
-        padding: 3rem 1rem;
+        font-size: 16px; /* Prevents zoom on iOS */
     }
     
     .hero-content h1 {
         font-size: 2.5rem;
+        line-height: 1.2;
+        animation: fadeInUp 1s ease-out 0.5s both;
     }
     
     .hero-content p {
@@ -126,18 +258,17 @@
     
     .video-cards {
         grid-template-columns: 1fr;
+        gap: var(--grid-gap-mobile);
     }
     
-    .category-container {
+    .portfolio-grid {
         grid-template-columns: 1fr;
-    }
-    
-    .services-container {
-        grid-template-columns: 1fr;
+        gap: var(--grid-gap-mobile);
     }
     
     .contact-container {
         flex-direction: column;
+        gap: 2rem;
     }
     
     .contact-info, .contact-form {
@@ -153,9 +284,88 @@
         height: 40px;
         font-size: 1.2rem;
     }
-    .main-section,.left-content, .right-content{
-        display: flex;
-        flex-flow: column;
+    
+    .main-section {
+        padding: var(--section-padding-mobile);
+        gap: 2rem;
+    }
+    
+    .left-content h1 {
+        font-size: 2rem;
+        animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    
+    .video-carousel {
+        gap: 1rem;
+    }
+    
+    .video-card {
+        min-width: 250px;
+        height: 400px;
+    }
+    
+    .strategy-title {
+        font-size: 2rem;
+    }
+    
+    .services-title {
+        font-size: 1.8rem;
+    }
+    
+    .portfolio-heading {
+        font-size: 2rem;
+    }
+    
+    .testimonial-quote {
+        font-size: 1.5rem;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+        margin-top: 1rem;
+    }
+    
+    .image-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .image-item img {
+        height: 250px;
+        width: 100%;
+    }
+    
+    .details-btn {
+        margin-top: 2rem;
+    }
+    
+    .accordion-header {
+        padding: 15px 0;
+        flex-wrap: wrap;
+    }
+    
+    .accordion-number {
+        width: 30px;
+        font-size: 0.8rem;
+    }
+    
+    .accordion-title {
+        font-size: 1rem;
+    }
+    
+    .portfolio-filter {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+    
+    .portfolio-filter-btn {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        padding: 8px 16px;
+        font-size: 12px;
     }
 }
 
@@ -178,12 +388,145 @@
         display: none;
     }
     
-    .mobile-nav {
+    .pill-nav {
         display: none;
+    }
+    
+    section {
+        padding: 2rem 1rem;
     }
 }
 
-/* Mobile Navigation Menu Animation */
+/* Very Small Screens (up to 480px) */
+@media screen and (max-width: 480px) {
+    section {
+        padding: 2rem 1rem;
+    }
+    
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+    
+    .hero-content p {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+    
+    .left-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .video-card {
+        min-width: 220px;
+        height: 350px;
+    }
+    
+    .strategy-title {
+        font-size: 1.8rem;
+    }
+    
+    .services-title {
+        font-size: 1.5rem;
+    }
+    
+    .portfolio-heading {
+        font-size: 1.8rem;
+    }
+    
+    .testimonial-quote {
+        font-size: 1.3rem;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .cta-button {
+        font-size: 0.8rem;
+    }
+    
+    .pill-container {
+        width: 95%;
+        padding: 6px 12px;
+    }
+    
+    .pill-nav li {
+        width: 36px;
+        height: 36px;
+        padding: 6px;
+    }
+    
+    .pill-nav i {
+        font-size: 0.9rem;
+    }
+    
+    .institutes-section {
+        padding: 2rem 1rem;
+        font-size: 1.2rem;
+    }
+    
+    .logo-track img {
+        height: 30px;
+    }
+    
+    .accordion-content {
+        padding: 0 0 15px 30px;
+    }
+    
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    
+    .submit-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Tablet-specific adjustments */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .video-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--grid-gap-tablet);
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animation delays for staggered effects */
+@media screen and (min-width: 768px) {
+    .video-card:nth-child(1) { animation-delay: 0.1s; }
+    .video-card:nth-child(2) { animation-delay: 0.2s; }
+    .video-card:nth-child(3) { animation-delay: 0.3s; }
+    
+    .portfolio-item:nth-child(1) { animation-delay: 0.1s; }
+    .portfolio-item:nth-child(2) { animation-delay: 0.2s; }
+    .portfolio-item:nth-child(3) { animation-delay: 0.3s; }
+    .portfolio-item:nth-child(4) { animation-delay: 0.4s; }
+    .portfolio-item:nth-child(5) { animation-delay: 0.5s; }
+    .portfolio-item:nth-child(6) { animation-delay: 0.6s; }
+    
+    .image-item:nth-child(1) { animation-delay: 0.2s; }
+    .image-item:nth-child(2) { animation-delay: 0.4s; }
+    .image-item:nth-child(3) { animation-delay: 0.6s; }
+}
+
+/* Enhanced mobile navigation */
 @media screen and (max-width: 991px) {
     .nav-active {
         transform: translateX(0%);
@@ -202,147 +545,151 @@
     }
 }
 
-/* Tablet-specific adjustments */
-@media screen and (min-width: 768px) and (max-width: 991px) {
-    .video-cards {
-        grid-template-columns: repeat(2, 1fr);
+/* Performance optimizations for mobile */
+@media screen and (max-width: 767px) {
+    .video-container video {
+        transform: none; /* Disable parallax on mobile for performance */
     }
     
-    .category-container {
-        grid-template-columns: repeat(2, 1fr);
+    .hero-content h1,
+    .hero-content p {
+        will-change: auto; /* Reduce will-change usage on mobile */
     }
 }
 
-/* Ensure minimum touch target size for mobile */
-
-@media screen and (max-width: 768px) {
-  .main-section {
-    flex-direction: column;
-    padding: 30px 5%;
-  }
-  
-  .left-content, 
-  .right-content {
-    width: 100%;
-    min-width: 100%;
-  }
-  
-  .video-cards {
-    display: block;
-    width: 250px;
-    height: 640px;
-    gap: 1rem  ;
-    
-  }
-  
-  .business-counter-grid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }
+/* High DPI displays */
+@media screen and (-webkit-min-device-pixel-ratio: 2),
+       screen and (min-resolution: 192dpi) {
+    .logo-track img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
 }
-.details-btn {
-            margin-top: 3rem;
-            
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .float-animation,
+    .pulse-animation,
+    .scroll-indicator {
+        animation: none !important;
+    }
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    .pill-nav,
+    .video-controls,
+    .scroll-indicator {
+        display: none !important;
+    }
+    
+    section {
+        padding: 1rem 0;
+        page-break-inside: avoid;
+    }
+    
+    .hero {
+        height: auto;
+        page-break-after: always;
+    }
+    
+    .video-container {
+        display: none;
+    }
+    
+    .hero-content {
+        position: static;
+        color: #000;
+    }
+}
+
+/* Focus management for keyboard navigation */
+@media screen and (max-width: 767px) {
+    .pill-nav li:focus-within {
+        outline: 2px solid var(--accent-color);
+        outline-offset: 2px;
+        border-radius: 50%;
+    }
+    
+    .portfolio-filter-btn:focus {
+        outline: 2px solid var(--accent-color);
+        outline-offset: 2px;
+    }
+}
+
+/* Container queries support (future-proofing) */
+@supports (container-type: inline-size) {
+    .portfolio-container {
+        container-type: inline-size;
+    }
+    
+    @container (max-width: 600px) {
+        .portfolio-grid {
+            grid-template-columns: 1fr;
         }
-@media screen and (max-width: 480px) {
-  .main-section {
-    padding: 20px 4%;
-    gap: 30px;
-  }
-  
-  .left-content h1 {
-    font-size: 2em;
-  }
-  
-  .video-card {
-    min-width: 220px;
-    height: 400px;
-  }
-  
-  .business-counter-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .business-counter-plus,
-  .business-counter-suffix {
-    margin-left: 0;
-    display: inline-block;
-  }
-  
-  .business-counter-label {
-    margin-left: 0;
-    margin-top: 5px;
-  }
-}
-@media screen and (max-width: 992px) {
-  .services-content {
-    gap: var(--spacing-lg);
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .services-content {
-    flex-direction: column;
-    gap: var(--spacing-md);
-  }
-  .hero-title{
-    margin-top: 27rem;
-  }
-  .image-grid {
-    grid-template-rows: repeat(1, 1fr);
+    }
     
-}
-.image-item img {
-  height: 360px;
-  width: 360px;
-  
-}
-.image-1 {
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-  transform: translateY(20px);
-}
-
-.image-2 {
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
-  transform: translateY(60px);
+    @container (min-width: 601px) and (max-width: 900px) {
+        .portfolio-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @container (min-width: 901px) {
+        .portfolio-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
 }
 
-
-  .services-left, .services-right {
-    flex: none;
-    width: 100%;
-  }
-  
-  .services-subtitle {
-    margin-bottom: var(--spacing-sm);
-  }
-  
-  .container {
-    padding: var(--spacing-md);
-  }
+/* Smooth scrolling behavior */
+@media screen and (min-width: 768px) {
+    html {
+        scroll-behavior: smooth;
+    }
 }
 
-@media screen and (max-width: 480px) {
-  .services-section {
-    padding: var(--spacing-lg) 0;
-  }
-  
-  .services-title {
-    font-size: 1.3rem;
-    margin-bottom: var(--spacing-sm);
-  }
-  
-  .services-subtitle {
-    font-size: 1rem;
-  }
-  
-  .container {
-    padding: var(--spacing-sm);
-  }
-  
-  .cta-button {
-    font-size: 0.9rem;
-  }
+/* Enhanced accessibility for mobile */
+@media screen and (max-width: 767px) {
+    /* Ensure sufficient color contrast */
+    .portfolio-category {
+        color: #aaa;
+    }
+    
+    .accordion-content p {
+        color: #ddd;
+    }
+    
+    /* Improve readability */
+    .hero-content p,
+    .left-content p,
+    .strategy-description {
+        line-height: 1.6;
+    }
+    
+    /* Better spacing for touch interfaces */
+    .accordion-header {
+        padding: 20px 0;
+    }
+    
+    .portfolio-filter-btn {
+        margin: 5px;
+    }
 }
