@@ -1022,7 +1022,7 @@ section {
 
 /* Portfolio Section */
 .portfolio-section {
-    background-color: #0a0a0a;
+    background-color: #000000;
     color: #ffffff;
     padding: var(--section-padding);
     font-family: var(--font-family);
