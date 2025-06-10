@@ -693,3 +693,31 @@ section {
         margin: 5px;
     }
 }
+/* In responsive.css */
+
+@media screen and (max-width: 991px) {
+    .strategy-section {
+        flex-direction: column; /* Stack children vertically on mobile */
+        gap: 2rem;
+        padding: var(--section-padding-tablet);
+        align-items: flex-start; /* Align content to the start on mobile */
+    }
+    
+    /* Remove .strategy-content padding-right and margin as it's no longer a main grouping div */
+    .strategy-content { 
+        padding-right: 0;
+        margin: 0;
+    }
+
+    /* Ensure image takes full width on mobile */
+    .strategy-image {
+        width: 100%;
+    }
+
+    /* Re-apply order for mobile if needed, though column direction should handle it */
+    .strategy-section > .strategy-title { order: 1; }
+    .strategy-section > .strategy-image { order: 2; }
+    .strategy-section > .strategy-description { order: 3; }
+    .strategy-section > .details-btn { order: 4; }
+    .strategy-section > .accordion { order: 5; }
+}
