@@ -667,16 +667,15 @@ section {
 .logo-track {
     display: flex;
     gap: 60px;
-    animation: scroll-left 25s linear infinite;
+    animation: scroll-left 120s linear infinite;
     width: max-content;
 }
 
 .logo-track img {
-    height: 40px;
+    height: 60px;
     flex-shrink: 0;
-    filter: brightness(0) invert(1);
     opacity: 0.6;
-    transition: all var(--transition-speed) ease;
+    transition: all 0.3s linear;
 }
 
 .logo-track img:hover {
@@ -694,7 +693,6 @@ section {
     }
 }
 
-/* Strategy Section */
 .strategy-section {
     width: 100%;
     padding: var(--section-padding);
@@ -849,7 +847,6 @@ section {
     display: block;
 }
 
-/* Hero Section Styles */
 .hero-section {
     padding: var(--section-padding);
     background-color: black;
@@ -983,7 +980,6 @@ section {
     transform: translateY(100px);
 }
 
-/* Services Section Styles */
 .services-section {
     padding: var(--section-padding);
 }
@@ -1020,7 +1016,6 @@ section {
     animation: fadeInRight 0.8s ease-out 0.4s forwards;
 }
 
-/* Portfolio Section */
 .portfolio-section {
     background-color: #000000;
     color: #ffffff;
@@ -1202,7 +1197,6 @@ section {
     display: none;
 }
 
-/* Testimonials Section */
 .testimonials-section {
     padding: var(--section-padding);
     background-color: black;
@@ -1277,7 +1271,6 @@ section {
     font-size: 0.9rem;
 }
 
-/* Contact Section */
 .contact {
     background-color: black;
     color: white;
@@ -1380,7 +1373,6 @@ section {
     box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
 }
 
-/* Footer */
 footer {
     background-color: var(--primary-color);
     color: var(--secondary-color);
@@ -1496,7 +1488,6 @@ footer {
     animation: fadeInUp 0.8s ease-out 0.5s forwards;
 }
 
-/* Social media specific hover colors */
 .fa-facebook-f:hover {
     color: #1877F2 !important;
 }
@@ -1516,7 +1507,6 @@ footer {
     color: #1769ff !important;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     :root {
         --section-padding: 3rem 1rem;
@@ -1620,7 +1610,6 @@ footer {
     }
 }
 
-/* Performance optimizations */
 * {
     will-change: auto;
 }
@@ -1631,7 +1620,6 @@ footer {
     will-change: transform;
 }
 
-/* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -1642,7 +1630,6 @@ footer {
     }
 }
 
-/* Focus styles for accessibility */
 button:focus,
 input:focus,
 textarea:focus,

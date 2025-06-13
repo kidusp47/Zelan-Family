@@ -126,7 +126,7 @@ section {
     }
     
     .burger {
-        display: block;
+        display: none;
     }
     
     .video-cards {
