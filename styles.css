@@ -753,9 +753,10 @@ section {
 .strategy-image img {
     width: 100%;
     height: auto;
-    max-height: 600px;
+    max-height: 700px;
+    max-width: 700px;
     object-fit: cover;
-    border-radius: var(--border-radius);
+    border-radius: 3rem;
     transition: all var(--transition-speed) ease;
     opacity: 0;
     animation: scaleIn 0.8s ease-out 0.3s forwards;
