@@ -389,7 +389,7 @@ section {
     }
     
     .pill-nav {
-        display: none;
+        display: none ;
     }
     
     section {
@@ -531,7 +531,9 @@ section {
     .nav-active {
         transform: translateX(0%);
     }
-    
+    .pill-nav {
+        display: block;
+    }
     .toggle .line1 {
         transform: rotate(-45deg) translate(-5px, 6px);
     }

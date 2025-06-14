@@ -221,6 +221,7 @@ section {
     transition: all var(--transition-speed) ease;
     background-color: rgba(0, 0, 0, 0.0);
     backdrop-filter: blur(10px);
+    outline: none;
 }
 
 .navbar.scrolled {
@@ -257,6 +258,8 @@ section {
     transition: all var(--transition-speed) ease;
     position: relative;
     padding: 0.5rem 0;
+    outline: none;
+
 }
 
 .nav-links a::before {
@@ -322,19 +325,47 @@ section {
     width: 100%;
     height: 100%;
     background: linear-gradient(45deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+    pointer-events: none;
 }
 
 .video-container video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 10s ease;
+    transition: transform 10s ease, opacity 1s ease-in-out;
+    opacity: 1;
 }
 
-.video-container video:hover {
-    transform: scale(1.05);
+.video-container video.fade-out {
+    opacity: 0;
 }
 
+.video-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+}
+
+.video-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.video-dot.active {
+    background-color: rgba(255, 255, 255, 0.95);
+    transform: scale(1.4);
+}
+
+.pill-nav{
+    display: none;
+}
 .hero-content {
     text-align: center;
     z-index: 1;
@@ -672,7 +703,7 @@ section {
 }
 
 .logo-track img {
-    height: 60px;
+    height: 100px;
     flex-shrink: 0;
     opacity: 0.6;
     transition: all 0.3s linear;
@@ -930,13 +961,14 @@ section {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
     gap: 1rem;
     position: relative;
 }
 
 .image-item {
     overflow: hidden;
-    border-radius: var(--border-radius);
+    border-radius: 3rem;
     transition: all var(--transition-speed) ease;
     opacity: 0;
     animation: scaleIn 0.8s ease-out forwards;
@@ -953,7 +985,7 @@ section {
 
 .image-item img {
     width: 22.5rem;
-    height: 35rem;
+    height: 27.5rem;
     object-fit: cover;
     transition: transform var(--transition-speed) ease;
 }
@@ -1118,7 +1150,7 @@ section {
 
 .portfolio-card {
     background-color: #1a1a1a;
-    border-radius: var(--border-radius);
+    border-radius: 36px;
     overflow: hidden;
     height: 100%;
     transition: all var(--transition-speed) ease;
@@ -1149,12 +1181,12 @@ section {
 .portfolio-image {
     position: relative;
     overflow: hidden;
-    border-radius: var(--border-radius);
+    border-radius: 0px;
     height: 0;
     padding-bottom: 133%;
 }
 
-.portfolio-image img {
+.portfolio-image img, .portfolio-image video{
     position: absolute;
     top: 0;
     left: 0;
@@ -1540,9 +1572,7 @@ footer {
         gap: 1rem;
     }
     
-    .image-1, .image-2, .image-3 {
-        transform: translateY(0);
-    }
+
     
     .image-item img {
         width: 100%;
@@ -1636,4 +1666,37 @@ textarea:focus,
 a:focus {
     outline: 2px solid var(--accent-color);
     outline-offset: 2px;
+}
+
+.custom-controls {
+    position: absolute;
+    bottom: 10px;
+    left: 40.5%;
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+  }
+
+  .custom-button {
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .custom-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  #hero-video {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+#hero-video.fade-out {
+    opacity: 0;
 }

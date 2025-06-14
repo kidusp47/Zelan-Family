@@ -543,3 +543,156 @@ const rippleCSS = `
 const style = document.createElement('style');
 style.textContent = rippleCSS;
 document.head.appendChild(style);
+
+
+  // When the page is loaded
+  document.addEventListener("DOMContentLoaded", function () {
+    // Select all video cards
+    const videoCards = document.querySelectorAll(".portfolio-card");
+
+    videoCards.forEach(card => {
+      const video = card.querySelector(".portfolio-video");
+      const playBtn = card.querySelector(".play-btn i");
+      const muteBtn = card.querySelector(".mute-btn i");
+
+      // Skip if there's no video in the card
+      if (!video) return;
+
+      // Play/Pause toggle
+      card.querySelector(".play-btn").addEventListener("click", () => {
+        if (video.paused) {
+          video.play();
+          playBtn.classList.remove("fa-play");
+          playBtn.classList.add("fa-pause");
+        } else {
+          video.pause();
+          playBtn.classList.remove("fa-pause");
+          playBtn.classList.add("fa-play");
+        }
+      });
+
+      // Mute/Unmute Button
+      card.querySelector('.mute-btn').addEventListener('click', () => {
+        video.muted = !video.muted;
+        if (video.muted) {
+          muteBtn.classList.remove('fa-volume-up');
+          muteBtn.classList.add('fa-volume-mute');
+        } else {
+          muteBtn.classList.remove('fa-volume-mute');
+          muteBtn.classList.add("fa-volume-up");
+        }
+      });
+    });
+  });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const navbar = document.querySelector('.navbar');
+    const navLinks = document.querySelector('.nav-links');
+    const burger = document.querySelector('.burger');
+    const heroVideo = document.getElementById('hero-video');
+
+    const heroVideos = [
+        'assets/videos/hero-video-1.mp4',
+        'assets/videos/hero-video-2.mp4',
+        'assets/videos/hero-video-3.mp4',
+        'assets/videos/hero-video-4.mp4',
+        'assets/videos/hero-video-5.mp4'
+    ];
+
+    let currentVideoIndex = 0;
+
+    // Auto-switch hero video every 10 seconds with fade effect
+    setInterval(() => {
+        heroVideo.classList.add('fade-out');
+
+        setTimeout(() => {
+            currentVideoIndex = (currentVideoIndex + 1) % heroVideos.length;
+
+            const newSource = document.createElement('source');
+            newSource.src = heroVideos[currentVideoIndex];
+            newSource.type = 'video/mp4';
+
+            heroVideo.innerHTML = '';
+            heroVideo.appendChild(newSource);
+            heroVideo.load();
+            heroVideo.play();
+            
+            updateDots(currentVideoIndex);
+            heroVideo.classList.remove('fade-out');
+        }, 1000); // Wait for fade-out to finish
+    }, 8000); // Every 10 seconds
+
+    // Navigation burger menu toggle
+    function toggleNav() {
+        navLinks.classList.toggle('nav-active');
+        burger.classList.toggle('toggle');
+        document.body.style.overflow = navLinks.classList.contains('nav-active') ? 'hidden' : '';
+    }
+    burger?.addEventListener('click', toggleNav);
+
+    const dotsContainer = document.getElementById('video-dots');
+
+// Create dots dynamically based on video count
+    heroVideos.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('video-dot');
+        if (index === 0) dot.classList.add('active');
+        dotsContainer.appendChild(dot);
+    });
+
+    const updateDots = (index) => {
+        const allDots = document.querySelectorAll('.video-dot');
+        allDots.forEach(dot => dot.classList.remove('active'));
+        allDots[index].classList.add('active');
+    };
+
+    // Scroll & parallax logic
+    let ticking = false;
+    function handleScroll() {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const scrollY = window.scrollY;
+
+                if (scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                if (heroVideo && scrollY <= window.innerHeight) {
+                    const yValue = scrollY * 0.5;
+                    heroVideo.style.transform = `translateY(${yValue}px)`;
+                }
+
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+    window.addEventListener('scroll', handleScroll);
+
+    // Scroll animation observer
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                const children = entry.target.querySelectorAll('.animate-child');
+                children.forEach((child, index) => {
+                    setTimeout(() => {
+                        child.classList.add('animated');
+                    }, index * 100);
+                });
+            }
+        });
+    }, observerOptions);
+
+    // Observe all elements with the .animate class
+    document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+});
+
+

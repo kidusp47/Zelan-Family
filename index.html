@@ -26,10 +26,9 @@
         <div class="nav-links">
             <ul>
                 <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#portfolio-section">Portfolio</a></li>
-                <li><a href="#work-categories">Work</a></li>
+                <li><a href="#work-categories">Portfolio</a></li>                
                 <li><a href="#services">Services</a></li>
+                <li><a href="#about">About Us</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -85,15 +84,14 @@
                     <p>The Creative Experience</p>
         </div>
         <div class="video-container">
-            <video id="hero-video" autoplay loop muted playsinline>
-                <source src="assets/videos/hero-video-1.mp4" type="video/mp4">
+            <video id="hero-video" autoplay loop muted playsinline preload="metadata">
+                <source src="assets/videos/hero-video-1.mp4"  type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+
+                <div class="video-dots" id="video-dots"></div>
         </div>
-        <div class="video-controls">
-            <button id="prev-video" class="video-nav-btn"><span>&lt;</span></button>
-            <button id="next-video" class="video-nav-btn"><span>&gt;</span></button>
-        </div>
+        
         <div class="scroll-indicator">
             <div class="arrow">
                 <span></span>
@@ -109,102 +107,402 @@
     <!-- Filter Buttons -->
     <div class="portfolio-filter">
       <button class="portfolio-filter-btn active" data-filter="all">All</button>
-      <button class="portfolio-filter-btn" data-filter="website">Photo Production</button>
-      <button class="portfolio-filter-btn" data-filter="mobile">Video Production</button>
-      <button class="portfolio-filter-btn" data-filter="desktop">Motion Design</button>
-      <button class="portfolio-filter-btn" data-filter="branding">3D Design</button>
+      <button class="portfolio-filter-btn" data-filter="PP">Photo Production</button>
+      <button class="portfolio-filter-btn" data-filter="VP">Video Production</button>
+      <button class="portfolio-filter-btn" data-filter="MD">Motion Design</button>
+      <button class="portfolio-filter-btn" data-filter="3D">3D Design</button>
     </div>
     
     <!-- Portfolio Grid -->
     <div class="portfolio-grid">
-      <!-- Project 1 -->
-      <div class="portfolio-item" data-category="website">
+
+      <div class="portfolio-item" data-category="VP">
         <div class="portfolio-card">
           <div class="portfolio-image">
-            <img src="/assets/images/demo-img-1.jpg" alt="Zadva Project">
+            <video class="portfolio-video" src="/assets/videos/portifolio-video-1.mp4" muted preload="metadata" loop></video>
+            <div class="custom-controls">
+              <button class="custom-button play-btn">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <button class="custom-button mute-btn">
+                <i class="fas fa-volume-mute"></i>
+              </button>
+            </div>
           </div>
           <div class="portfolio-info">
             <h3 class="portfolio-title">Name Project</h3>
-            <p class="portfolio-category">Categories</p>
+            <p class="portfolio-category">Video Production</p>
           </div>
         </div>
+      </div>
+
+      <div class="portfolio-item" data-category="PP">
+              <div class="portfolio-card">
+                <div class="portfolio-image">
+                  <img src="/assets/images/portfolio-img-1.JPG" alt="" title="">
+                      </div>
+                <div class="portfolio-info">
+                  <h3 class="portfolio-title">Name Project</h3>
+                  <p class="portfolio-category">Photo Production</p>
+                </div>
+              </div>
+      </div>
+
+      <div class="portfolio-item" data-category="VP">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <video class="portfolio-video" src="/assets/videos/portifolio-video-2.mp4" muted preload="metadata" loop></video>
+            <div class="custom-controls">
+              <button class="custom-button play-btn">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <button class="custom-button mute-btn">
+                <i class="fas fa-volume-mute"></i>
+              </button>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Video Production</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-category="PP">
+              <div class="portfolio-card">
+                <div class="portfolio-image">
+                  <img src="/assets/images/portfolio-img-2.JPG" alt="" title="">
+                      </div>
+                <div class="portfolio-info">
+                  <h3 class="portfolio-title">Name Project</h3>
+                  <p class="portfolio-category">Photo Production</p>
+                </div>
+              </div>
+      </div>
+
+      <div class="portfolio-item" data-category="VP">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <video class="portfolio-video" src="/assets/videos/portifolio-video-3.mp4" muted preload="metadata" loop></video>
+            <div class="custom-controls">
+              <button class="custom-button play-btn">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <button class="custom-button mute-btn">
+                <i class="fas fa-volume-mute"></i>
+              </button>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Video Production</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-category="PP">
+              <div class="portfolio-card">
+                <div class="portfolio-image">
+                  <img src="/assets/images/portfolio-img-3.JPG" alt="" title="">
+                      </div>
+                <div class="portfolio-info">
+                  <h3 class="portfolio-title">Name Project</h3>
+                  <p class="portfolio-category">Photo Production</p>
+                </div>
+              </div>
+      </div>
+
+      <div class="portfolio-item" data-category="VP">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <video class="portfolio-video" src="/assets/videos/portifolio-video-4.mp4" muted preload="metadata" loop></video>
+            <div class="custom-controls">
+              <button class="custom-button play-btn">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <button class="custom-button mute-btn">
+                <i class="fas fa-volume-mute"></i>
+              </button>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Video Production</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-category="PP">
+              <div class="portfolio-card">
+                <div class="portfolio-image">
+                  <img src="/assets/images/portfolio-img-4.JPG" alt="" title="">
+                      </div>
+                <div class="portfolio-info">
+                  <h3 class="portfolio-title">Name Project</h3>
+                  <p class="portfolio-category">Photo Production</p>
+                </div>
+              </div>
+      </div>
+
+      <div class="portfolio-item" data-category="VP">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <video class="portfolio-video" src="/assets/videos/portifolio-video-5.mp4" muted preload="metadata" loop></video>
+            <div class="custom-controls">
+              <button class="custom-button play-btn">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <button class="custom-button mute-btn">
+                <i class="fas fa-volume-mute"></i>
+              </button>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Video Production</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-category="PP">
+              <div class="portfolio-card">
+                <div class="portfolio-image">
+                  <img src="/assets/images/portfolio-img-4.JPG" alt="" title="">
+                      </div>
+                <div class="portfolio-info">
+                  <h3 class="portfolio-title">Name Project</h3>
+                  <p class="portfolio-category">Photo Production</p>
+                </div>
+              </div>
       </div>
       
-      <!-- Project 2 -->
-      <div class="portfolio-item" data-category="mobile">
+      <div class="portfolio-item" data-category="VP">
         <div class="portfolio-card">
           <div class="portfolio-image">
-            <img src="/assets/images/demo-img-2.jpg" alt="Black Portfolio">
+            <video class="portfolio-video" src="/assets/videos/portifolio-video-6.mp4" muted preload="metadata" loop></video>
+            <div class="custom-controls">
+              <button class="custom-button play-btn">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <button class="custom-button mute-btn">
+                <i class="fas fa-volume-mute"></i>
+              </button>
+            </div>
           </div>
           <div class="portfolio-info">
             <h3 class="portfolio-title">Name Project</h3>
-            <p class="portfolio-category">Categories</p>
+            <p class="portfolio-category">Video Production</p>
           </div>
         </div>
+      </div>
+
+      <div class="portfolio-item" data-category="PP">
+              <div class="portfolio-card">
+                <div class="portfolio-image">
+                  <img src="/assets/images/portfolio-img-5.JPG" alt="" title="">
+                      </div>
+                <div class="portfolio-info">
+                  <h3 class="portfolio-title">Name Project</h3>
+                  <p class="portfolio-category">Photo Production</p>
+                </div>
+              </div>
+      </div>
+
+      <div class="portfolio-item" data-category="VP">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <video class="portfolio-video" src="/assets/videos/portifolio-video-7.mp4" muted preload="metadata" loop></video>
+            <div class="custom-controls">
+              <button class="custom-button play-btn">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <button class="custom-button mute-btn">
+                <i class="fas fa-volume-mute"></i>
+              </button>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Video Production</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-category="PP">
+              <div class="portfolio-card">
+                <div class="portfolio-image">
+                  <img src="/assets/images/portfolio-img-6.JPG" alt="" title="">
+                      </div>
+                <div class="portfolio-info">
+                  <h3 class="portfolio-title">Name Project</h3>
+                  <p class="portfolio-category">Photo Production</p>
+                </div>
+              </div>
+      </div>
+
+      <div class="portfolio-item" data-category="VP">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <video class="portfolio-video" src="/assets/videos/portifolio-video-8.mp4" muted preload="metadata" loop></video>
+            <div class="custom-controls">
+              <button class="custom-button play-btn">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <button class="custom-button mute-btn">
+                <i class="fas fa-volume-mute"></i>
+              </button>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Video Production</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-category="PP">
+              <div class="portfolio-card">
+                <div class="portfolio-image">
+                  <img src="/assets/images/portfolio-img-7.JPG" alt="" title="">
+                      </div>
+                <div class="portfolio-info">
+                  <h3 class="portfolio-title">Name Project</h3>
+                  <p class="portfolio-category">Photo Production</p>
+                </div>
+              </div>
+      </div>
+
+      <div class="portfolio-item" data-category="VP">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <video class="portfolio-video" src="/assets/videos/portifolio-video-9.mp4" muted preload="metadata" loop></video>
+            <div class="custom-controls">
+              <button class="custom-button play-btn">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <button class="custom-button mute-btn">
+                <i class="fas fa-volume-mute"></i>
+              </button>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Video Production</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-category="PP">
+              <div class="portfolio-card">
+                <div class="portfolio-image">
+                  <img src="/assets/images/portfolio-img-8.JPG" alt="" title="">
+                      </div>
+                <div class="portfolio-info">
+                  <h3 class="portfolio-title">Name Project</h3>
+                  <p class="portfolio-category">Photo Production</p>
+                </div>
+              </div>
+      </div>
+
+      <div class="portfolio-item" data-category="VP">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <video class="portfolio-video" src="/assets/videos/portifolio-video-10.mp4" muted preload="metadata" loop></video>
+            <div class="custom-controls">
+              <button class="custom-button play-btn">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <button class="custom-button mute-btn">
+                <i class="fas fa-volume-mute"></i>
+              </button>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Video Production</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-category="PP">
+              <div class="portfolio-card">
+                <div class="portfolio-image">
+                  <img src="/assets/images/portfolio-img-9.JPG" alt="" title="">
+                      </div>
+                <div class="portfolio-info">
+                  <h3 class="portfolio-title">Name Project</h3>
+                  <p class="portfolio-category">Photo Production</p>
+                </div>
+              </div>
+      </div>
+
+      <div class="portfolio-item" data-category="VP">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <video class="portfolio-video" src="/assets/videos/portifolio-video-11.mp4" muted preload="metadata" loop></video>
+            <div class="custom-controls">
+              <button class="custom-button play-btn">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <button class="custom-button mute-btn">
+                <i class="fas fa-volume-mute"></i>
+              </button>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Video Production</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-category="PP">
+              <div class="portfolio-card">
+                <div class="portfolio-image">
+                  <img src="/assets/images/portfolio-img-10.JPG" alt="" title="">
+                      </div>
+                <div class="portfolio-info">
+                  <h3 class="portfolio-title">Name Project</h3>
+                  <p class="portfolio-category">Photo Production</p>
+                </div>
+              </div>
+      </div>
+
+      <div class="portfolio-item" data-category="VP">
+        <div class="portfolio-card">
+          <div class="portfolio-image">
+            <video class="portfolio-video" src="/assets/videos/portifolio-video-12.mp4" muted preload="metadata" loop></video>
+            <div class="custom-controls">
+              <button class="custom-button play-btn">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <button class="custom-button mute-btn">
+                <i class="fas fa-volume-mute"></i>
+              </button>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <h3 class="portfolio-title">Name Project</h3>
+            <p class="portfolio-category">Video Production</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-category="PP">
+              <div class="portfolio-card">
+                <div class="portfolio-image">
+                  <img src="/assets/images/portfolio-img-11.JPG" alt="" title="">
+                      </div>
+                <div class="portfolio-info">
+                  <h3 class="portfolio-title">Name Project</h3>
+                  <p class="portfolio-category">Photo Production</p>
+                </div>
+              </div>
       </div>
       
-      <!-- Project 3 -->
-      <div class="portfolio-item" data-category="desktop">
-        <div class="portfolio-card">
-          <div class="portfolio-image">
-            <img src="/assets/images/demo-img-3.jpg" alt="Sounder Project">
-          </div>
-          <div class="portfolio-info">
-            <h3 class="portfolio-title">Name Project</h3>
-            <p class="portfolio-category">Categories</p>
-          </div>
-        </div>
-      </div>
+
       
-      <!-- Project 4 -->
-      <div class="portfolio-item" data-category="branding">
-        <div class="portfolio-card">
-          <div class="portfolio-image">
-            <img src="/assets/images/demo-img-4.jpg" alt="Energized Project">
-          </div>
-          <div class="portfolio-info">
-            <h3 class="portfolio-title">Name Project</h3>
-            <p class="portfolio-category">Categories</p>
-          </div>
-        </div>
-      </div>
       
-      <!-- Project 5 -->
-      <div class="portfolio-item" data-category="website">
-        <div class="portfolio-card">
-          <div class="portfolio-image">
-            <img src="/assets/images/demo-img-3.jpg" alt="Black Portfolio">
-          </div>
-          <div class="portfolio-info">
-            <h3 class="portfolio-title">Name Project</h3>
-            <p class="portfolio-category">Categories</p>
-          </div>
-        </div>
-      </div>
-      <div class="portfolio-item" data-category="website">
-        <div class="portfolio-card">
-          <div class="portfolio-image">
-            <img src="/assets/images/demo-img-2.jpg" alt="Black Portfolio">
-          </div>
-          <div class="portfolio-info">
-            <h3 class="portfolio-title">Name Project</h3>
-            <p class="portfolio-category">Categories</p>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Project 6 -->
-      <div class="portfolio-item" data-category="mobile">
-        <div class="portfolio-card">
-          <div class="portfolio-image">
-            <img src="/assets/images/demo-img-1.jpg" alt="Zadva Project">
-          </div>
-          <div class="portfolio-info">
-            <h3 class="portfolio-title">Name Project</h3>
-            <p class="portfolio-category">Categories</p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -276,7 +574,7 @@
           </div>
 
 <section class="hero-section">
-        <div class="container" id="service">
+        <div class="container" id="services">
           <div class="hero-content1">
             <div class="hero-text">
               <h1 class="hero-title">What we Offer</h1>
@@ -660,24 +958,83 @@
             <div class="contact-info">
                 <p>Get in touch with us to discuss your project needs.</p>
                 <div class="contact-details">
-                    <p>Email: info@zelanfamily.com</p>
-                    <p>Phone: +1 (555) 123-4567</p>
+                    <p>Email: <a href="mailto:zelanfamily@gmail.com">zelanfamily@gmail.com</a></p>
+                    <p>Phone: +251973230119</p>
                 </div>
             </div>
             <div class="contact-form">
-                <form>
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <form>
+                <!-- How did you hear about us? -->
+                <div class="form-group">
+                    <label for="referral">How did you discover Zelan Family?</label>
+                    <select id="referral" name="referral" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="word_of_mouth">Word of mouth</option>
+                        <option value="event">At an event</option>
+                        <option value="khilx">Through Khilx Academy</option>
+                        <option value="curious">I saw your work and got curious</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <!-- What are they dreaming of -->
+                <div class="form-group">
+                    <label for="project">What are you dreaming of creating with us?</label>
+                    <textarea id="project" name="project" placeholder="Tell us about your idea..." required></textarea>
+                </div>
+
+                <!-- Project emotion -->
+                <div class="form-group">
+                    <label>What feeling should your project give people?</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="vibe" value="bold"> Bold & energetic</label>
+                        <label><input type="checkbox" name="vibe" value="clean"> Clean & professional</label>
+                        <label><input type="checkbox" name="vibe" value="dreamy"> Dreamy & emotional</label>
+                        <label><input type="checkbox" name="vibe" value="artistic"> Artistic & experimental</label>
+                        <label><input type="checkbox" name="vibe" value="uplifting"> Inspiring & uplifting</label>
                     </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
+                </div>
+
+                <!-- Help level -->
+                <div class="form-group">
+                    <label>What do you need help with most?</label>
+                    <select name="help_level" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="ready">I know exactly what I want — just need the team</option>
+                        <option value="direction">I have ideas, but need creative direction</option>
+                        <option value="scratch">I’m starting from scratch — guide me</option>
+                        <option value="learn">I want to learn (through Khilx Academy)</option>
+                    </select>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-method">Preferred way to reach you:</label>
+                    <select id="contact-method" name="contact_method" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="phone">Phone</option>
+                        <option value="telegram">Telegram</option>
+                        <option value="email">Email</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="contact_info" placeholder="Your Phone / Telegram / Email" required>
+                </div>
+
+                <!-- Optional Inspiration Link -->
+                <div class="form-group">
+                    <input type="url" name="inspo" placeholder="Link to any reference or inspo (optional)">
+                </div>
+
+                <button type="submit" class="submit-btn">Let’s Talk</button>
+            </form>
+        </div>
+
         </div>
     </section>
 
