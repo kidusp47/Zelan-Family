@@ -37,8 +37,10 @@
 }
 
 body {
-    color: var(--secondary-color);
-    background-color: var(--primary-color);
+    color: var(--secondary-color, );
+    background: linear-gradient(120deg, #000, #02072f);
+    background-attachment: fixed;
+    background-size: cover;
     overflow-x: hidden;
     font-family: var(--font-family);
     line-height: 1.6;
@@ -225,7 +227,7 @@ section {
 }
 
 .navbar.scrolled {
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(20px);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
@@ -471,7 +473,7 @@ section {
 
 /* About Us Section */
 .about {
-    background-color: var(--primary-color);
+    background-color: transparent;
     color: var(--secondary-color);
     padding: var(--section-padding);
 }
@@ -677,7 +679,7 @@ section {
 /* Institutes Section */
 .institutes-section {
     padding: 4rem 2rem;
-    background-color: #000;
+    background-color: transparent;
     text-align: center;
     overflow: hidden;
     font-size: 1.5rem;
@@ -730,7 +732,7 @@ section {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
-    background-color: black;
+    background-color: transparent;
     font-family: var(--font-family);
     line-height: 1.6;
     color: white;
@@ -881,7 +883,7 @@ section {
 
 .hero-section {
     padding: var(--section-padding);
-    background-color: black;
+    background-color: transparent;
     color: white;
 }
 
@@ -1050,7 +1052,7 @@ section {
 }
 
 .portfolio-section {
-    background-color: #000000;
+    background-color: transparent;
     color: #ffffff;
     padding: var(--section-padding);
     font-family: var(--font-family);
@@ -1232,7 +1234,7 @@ section {
 
 .testimonials-section {
     padding: var(--section-padding);
-    background-color: black;
+    background-color: transparent;
     color: white;
 }
 
@@ -1305,7 +1307,7 @@ section {
 }
 
 .contact {
-    background-color: black;
+    background-color: transparent;
     color: white;
     padding: var(--section-padding);
 }
@@ -1320,6 +1322,7 @@ section {
 }
 
 .contact-info {
+    position: sticky;
     flex: 1;
     min-width: 300px;
     padding: 2rem;
@@ -1407,7 +1410,7 @@ section {
 }
 
 footer {
-    background-color: var(--primary-color);
+    background-color: transparent;
     color: var(--secondary-color);
     padding: 3rem 2rem 1rem;
 }

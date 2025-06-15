@@ -1,0 +1,114 @@
+/* Anti-Flicker Neon Blue Circuit Animation - Completely stable */
+
+html {
+  height: 98%;
+}
+
+body {
+  background-color: #fff;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+svg.circuit-path {
+  position: fixed;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+  z-index: -9;
+  height: 200%;
+  width: auto;
+  pointer-events: none;
+  /* Anti-flicker optimizations */
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Stable neon blue paths - NO FLICKERING */
+.path {
+  stroke: #00ffff;
+  stroke-width: 2;
+  fill: none;
+  opacity: 1;
+  filter: drop-shadow(0 0 6px #00ffff) drop-shadow(0 0 12px #00ffff);
+  animation: stable-flow 15s linear infinite;
+  will-change: stroke-dashoffset;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  /* Prevent subpixel rendering issues */
+  shape-rendering: geometricPrecision;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Staggered timing */
+.path-01 {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation-delay: 0s;
+}
+
+.path-02 {
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  animation-delay: 5s;
+}
+
+.path-03 {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation-delay: 10s;
+}
+
+/* SINGLE animation - only stroke-dashoffset changes */
+@keyframes stable-flow {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: -1000;
+  }
+}
+
+/* Responsive adjustments */
+@media screen and (min-width: 768px) {
+  svg.circuit-path {
+    height: auto;
+    width: 200%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  svg.circuit-path {
+    height: 150%;
+    width: auto;
+  }
+  
+  .path {
+    stroke-width: 1.5;
+  }
+}
+
+/* Container styling */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding-top: 25px;
+  }
+}
+
+/* Additional anti-flicker measures */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+svg.circuit-path * {
+  /* Force consistent rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+

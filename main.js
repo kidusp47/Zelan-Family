@@ -677,6 +677,7 @@ document.addEventListener('DOMContentLoaded', function () {
         rootMargin: '0px 0px -50px 0px'
     };
 
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -693,6 +694,240 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Observe all elements with the .animate class
     document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+    
+class OptimizedCircuitAnimation {
+    constructor() {
+        this.paths = [];
+        this.isActive = true;
+        this.init();
+    }
+
+    init() {
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.setupAnimation());
+        } else {
+            this.setupAnimation();
+        }
+    }
+
+    setupAnimation() {
+        this.paths = document.querySelectorAll('.path');
+        this.optimizeForPerformance();
+        this.setupMinimalControls();
+    }
+
+    optimizeForPerformance() {
+        // Enable hardware acceleration for all paths
+        this.paths.forEach(path => {
+            path.style.transform = 'translateZ(0)';
+            path.style.backfaceVisibility = 'hidden';
+            path.style.willChange = 'stroke-dashoffset';
+        });
+
+        // Pause animation when page is not visible (battery saving)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.pauseAnimation();
+            } else {
+                this.resumeAnimation();
+            }
+        });
+    }
+
+    setupMinimalControls() {
+        // Minimal setup - no complex glow variations that cause lag
+        // Animation is handled purely by CSS for maximum performance
+    }
+
+    pauseAnimation() {
+        this.isActive = false;
+        this.paths.forEach(path => {
+            path.style.animationPlayState = 'paused';
+        });
+    }
+
+    resumeAnimation() {
+        this.isActive = true;
+        this.paths.forEach(path => {
+            path.style.animationPlayState = 'running';
+        });
+    }
+
+    // Simplified public controls
+    toggle() {
+        if (this.isActive) {
+            this.pauseAnimation();
+        } else {
+            this.resumeAnimation();
+        }
+    }
+
+    setSpeed(speed) {
+        const baseDuration = 8; // seconds
+        const newDuration = baseDuration / speed;
+        
+        this.paths.forEach(path => {
+            path.style.animationDuration = `${newDuration}s, 3s`; // flow, glow
+        });
+    }
+
+    destroy() {
+        this.pauseAnimation();
+        const svg = document.querySelector('.circuit-path');
+        if (svg) {
+            svg.remove();
+        }
+    }
+}
+
+// Auto-initialize with minimal overhead
+let optimizedCircuitAnimation;
+
+function initOptimizedCircuitAnimation() {
+    optimizedCircuitAnimation = new OptimizedCircuitAnimation();
+    
+    // Make globally accessible
+    window.optimizedCircuitAnimation = optimizedCircuitAnimation;
+}
+
+// Initialize immediately for smooth startup
+initOptimizedCircuitAnimation();
+
+// Simplified keyboard shortcut
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.code === 'KeyN') { // Ctrl+Shift+N for Neon
+        if (window.optimizedCircuitAnimation) {
+            window.optimizedCircuitAnimation.toggle();
+        }
+    }
+});
+
+// Export for module systems
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = OptimizedCircuitAnimation;
+}
+
+// Anti-Flicker Circuit Animation JavaScript - Minimal interference
+
+class AntiFlickerCircuitAnimation {
+    constructor() {
+        this.paths = [];
+        this.isActive = true;
+        this.init();
+    }
+
+    init() {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.setupAnimation());
+        } else {
+            this.setupAnimation();
+        }
+    }
+
+    setupAnimation() {
+        this.paths = document.querySelectorAll('.path');
+        this.applyAntiFlickerOptimizations();
+        this.setupMinimalControls();
+    }
+
+    applyAntiFlickerOptimizations() {
+        // Apply critical anti-flicker properties
+        this.paths.forEach(path => {
+            // Force hardware acceleration
+            path.style.transform = 'translateZ(0)';
+            path.style.backfaceVisibility = 'hidden';
+            path.style.webkitBackfaceVisibility = 'hidden';
+            path.style.webkitTransform = 'translateZ(0)';
+            
+            // Optimize for animation
+            path.style.willChange = 'stroke-dashoffset';
+            
+            // Prevent subpixel issues
+            path.style.shapeRendering = 'geometricPrecision';
+            path.style.vectorEffect = 'non-scaling-stroke';
+        });
+    }
+
+    setupMinimalControls() {
+        // Only pause when page is hidden to save battery
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.pauseAnimation();
+            } else {
+                this.resumeAnimation();
+            }
+        });
+    }
+
+    pauseAnimation() {
+        this.isActive = false;
+        this.paths.forEach(path => {
+            path.style.animationPlayState = 'paused';
+        });
+    }
+
+    resumeAnimation() {
+        this.isActive = true;
+        this.paths.forEach(path => {
+            path.style.animationPlayState = 'running';
+        });
+    }
+
+    // Minimal public controls
+    toggle() {
+        if (this.isActive) {
+            this.pauseAnimation();
+        } else {
+            this.resumeAnimation();
+        }
+    }
+
+    setSpeed(speed) {
+        const baseDuration = 15; // seconds
+        const newDuration = baseDuration / speed;
+        
+        this.paths.forEach(path => {
+            path.style.animationDuration = `${newDuration}s`;
+        });
+    }
+
+    destroy() {
+        this.pauseAnimation();
+        const svg = document.querySelector('.circuit-path');
+        if (svg) {
+            svg.remove();
+        }
+    }
+}
+
+// Initialize with minimal overhead
+let antiFlickerCircuitAnimation;
+
+function initAntiFlickerCircuitAnimation() {
+    antiFlickerCircuitAnimation = new AntiFlickerCircuitAnimation();
+    window.antiFlickerCircuitAnimation = antiFlickerCircuitAnimation;
+}
+
+// Initialize immediately
+initAntiFlickerCircuitAnimation();
+
+// Keyboard shortcut
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.code === 'KeyF') { // Ctrl+Shift+F for Flicker-free
+        if (window.antiFlickerCircuitAnimation) {
+            window.antiFlickerCircuitAnimation.toggle();
+        }
+    }
+});
+
+// Export
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = AntiFlickerCircuitAnimation;
+}
+
+
 });
 
 
